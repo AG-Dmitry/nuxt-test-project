@@ -1,35 +1,24 @@
 <script setup lang="ts">
-
 useHead({
   bodyAttrs: {
     class: 'bg-neutral-800 text-white'
   }
 })
 
+const { data, error } = await useFetch('/api/version');
+
 </script>
 
 <template>
   <UApp>
     <NuxtLayout>
-      <header class="">
-        <ul class="flex justify-center gap-12 mx-8 mb-8">
-          <li class="flex items-center">
-            <SvgoArrow />
-          </li>
-          <li>
-            <NuxtLink to="/">Home</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/counter">Counter</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink to="/userinfo">User info</NuxtLink>
-          </li>
-          <li class="flex items-center">
-            <SvgoArrow class="rotate-180" />
-          </li>
-        </ul>
-      </header>
+      <!-- Database Version -->
+      <div>
+        <h1>Database Version</h1>
+        <p v-if="data">{{ data.version }}</p>
+        <p v-else-if="error">Error fetching version</p>
+      </div>
+      <!-- Alert -->
       <Alert />
       <NuxtPage />
     </NuxtLayout>

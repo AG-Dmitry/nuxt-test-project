@@ -3,7 +3,7 @@ export default defineAppConfig({
     button: {
       slots: {
         base: [
-          'rounded-md font-medium inline-flex items-center disabled:cursor-auto aria-disabled:cursor-auto disabled:opacity-75 aria-disabled:opacity-75 hover:cursor-pointer',
+          'rounded-md font-medium inline-flex items-center disabled:cursor-auto aria-disabled:cursor-auto hover:cursor-pointer',
           'transition-colors'
         ],
         label: 'truncate',
@@ -97,13 +97,13 @@ export default defineAppConfig({
         {
           color: 'primary',
           variant: 'solid',
-          class: 'text-inverted bg-primary hover:bg-primary/75 active:bg-primary/75 disabled:bg-primary aria-disabled:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary'
-        },
+          class: 'text-inverted bg-primary hover:bg-primary/75 active:bg-primary/75 disabled:bg-neutral-500 aria-disabled:bg-neutral-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary'
+        }, // replace disabled:___-neutral-500 with a proper palette color
         {
           color: 'primary',
           variant: 'outline',
-          class: 'ring ring-inset ring-primary/50 text-primary hover:bg-primary/10 active:bg-primary/10 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-primary'
-        },
+          class: 'ring ring-inset ring-primary/50 text-primary hover:bg-primary/10 active:bg-primary/10 disabled:ring-neutral-500 aria-disabled:ring-neutral-500 disabled:text-neutral-500 aria-disabled:text-neutral-500 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-primary'
+        }, // replace disabled:___-neutral-500 with a proper palette color
         {
           color: 'primary',
           variant: 'soft',

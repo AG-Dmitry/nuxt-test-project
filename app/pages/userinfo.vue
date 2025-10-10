@@ -40,7 +40,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
           type="password" />
       </UFormField>
 
-      <UButton :disabled="!isFormValid" type="submit" class="px-12 py-2 mt-2 " variant="outline" icon="i-lucide-rocket">
+      <UButton :disabled="!isFormValid" type="submit" class="px-12 py-2 mt-2" variant="outline" icon="i-lucide-rocket">
         Submit
       </UButton>
     </UForm>
