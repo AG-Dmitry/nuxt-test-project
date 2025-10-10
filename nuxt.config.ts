@@ -24,6 +24,7 @@ export default defineNuxtConfig({
         lang: 'en',
       },
     },
+    pageTransition: { name: 'page', mode: 'out-in' },
   },
   vite: {
     plugins: [tailwindcss()],
@@ -38,6 +39,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     'nuxt-svgo',
     '@vueuse/nuxt',
+    '@nuxt/ui',
   ],
   css: ['./../app/assets/css/main.css'],
   hooks: {

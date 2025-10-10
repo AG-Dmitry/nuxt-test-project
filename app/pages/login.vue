@@ -1,20 +1,14 @@
 <script setup lang="ts">
-  const { sayHello } = useUtils();
 
-  /*
-  definePageMeta({
-    layout: 'default',
-  })
-  */
+definePageMeta({
+  layout: false,
+})
 
-  sayHello();
 </script>
 
 <template>
-  <div class="flex flex-row">
-    <SvgoArrow class="m-8" />
-    <SvgoArrow class="m-8 rotate-180" />
+  <div class="flex flex-col items-center">
+    <div class="m-8 font-bold text-4xl">Login page</div>
+    <img class="m-8 w-100" src="~assets/images/who.jpg"></img>
   </div>
-  <div class="m-8 font-bold text-4xl">Login page</div>
-  <img class="m-8 w-200" src="~assets/images/who.jpg"></img>
 </template>
