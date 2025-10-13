@@ -45,3 +45,19 @@
   --ui-bg-accented: var(--ui-color-neutral-700);
   --ui-bg-inverted: var(--color-white);
 }
+
+/* Для каждой страницы свое значение transform (как в ТГ) */
+
+.page-enter-active,
+.page-leave-active {
+  transition: all 0.1s ease-out;
+}
+
+.page-enter-from{
+  /* transform: translateX(100%); */
+  opacity: 0;
+}
+
+.page-leave-to {
+  opacity: 0;
+}

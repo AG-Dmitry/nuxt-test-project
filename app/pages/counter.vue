@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useCounterModel } from '~/stores/stateStore';
+import useCounterModel from '~/stores/counterModel';
 
 definePageMeta({
   //layout: 'default',

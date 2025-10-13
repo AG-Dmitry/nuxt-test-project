@@ -2,34 +2,42 @@
 import * as z from 'zod'
 import type { FormSubmitEvent } from '@nuxt/ui'
 
-const schema = z.object({
+definePageMeta({
+  //layout: 'default',
+  middleware: 'auth',
+})
+
+const { signinUser } = useUtils();
+
+const userSchema = z.object({
   email: z.email('Invalid email'),
   password: z.string('Password is required').min(8, 'Must be at least 8 characters')
 })
 
-type Schema = z.output<typeof schema>
+type UserSchema = z.output<typeof userSchema>
 
-const state = reactive<Partial<Schema>>({
+const state = reactive<Partial<UserSchema>>({
   email: undefined,
   password: undefined
 })
 
-const isFormValid = computed(() => {
-  return schema.safeParse(state).success;
-});
-
 const toast = useToast()
-async function onSubmit(event: FormSubmitEvent<Schema>) {
+async function onSubmit(event: FormSubmitEvent<UserSchema>) {
   toast.add({ title: 'Success', description: 'The form has been submitted.', color: 'success' });
-  state.email = '';
-  state.password = '';
+  if (state.email && state.password) signinUser(state.email, state.password);
+  state.email = undefined;
+  state.password = undefined;
   console.log(event.data);
 }
+
+const isFormValid = computed(() => {
+  return userSchema.safeParse(state).success;
+});
 </script>
 
 <template>
   <div class="flex flex-col items-center">
-    <UForm :schema="schema" :state="state" class="space-y-4 mt-4" @submit="onSubmit">
+    <UForm :schema="userSchema" :state="state" class="space-y-4 mt-4" @submit="onSubmit">
       <UFormField label="Email" name="email" class="flex flex-col gap-1">
         <UInput :ui="{ trailing: 'pe-1' }" class="bg-neutral-700 rounded-md" placeholder="enter your email"
           v-model="state.email" />

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia';
 
-export const useCounterModel = defineStore('counterModel', {
+export default defineStore('counterModel', {
   state: () => ({
     value: 0,
   }),

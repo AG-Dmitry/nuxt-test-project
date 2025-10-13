@@ -1,7 +1,7 @@
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineNuxtConfig({
-  compatibilityDate: '2025-07-15',
+  compatibilityDate: '2025-10-12',
   devtools: {
     enabled: true,
 
@@ -29,8 +29,13 @@ export default defineNuxtConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-  svgo: {
-    autoImportPath: './../app/assets/icons/',
+  optimization: {
+    treeShake: {
+      composables: {
+        client: { vue: ['onMounted'] },
+        server: { vue: ['onServerPrefetch'] },
+      },
+    },
   },
   modules: [
     '@nuxt/eslint',
@@ -42,6 +47,9 @@ export default defineNuxtConfig({
     '@nuxt/ui',
   ],
   css: ['./../app/assets/css/main.css'],
+  svgo: {
+    autoImportPath: './../app/assets/icons/',
+  },
   hooks: {
     ready: () => {
       console.log('Nuxt is ready');
