@@ -19,7 +19,6 @@ const dbVersion = computed(() => (version.value
 const userEmail = computed(() => userModel.value ? userModel.value : 'No user');
 
 console.log('User: ', user.value?.user?.primaryEmail);
-console.log('Signal: ', user.value?.signal);
 </script>
 
 <template>
@@ -28,7 +27,7 @@ console.log('Signal: ', user.value?.signal);
       <!-- Database Version -->
       <div>
         <h1>Database Version</h1>
-        <p v-if="version">...{{ dbVersion }}</p>
+        <p v-if="version">{{ dbVersion }}</p>
         <p v-else-if="errorData">Error fetching version</p>
       </div>
       <!-- User -->

@@ -2,9 +2,9 @@ import 'dotenv/config';
 import { stackServerApp } from '../../auth/stack';
 
 export default defineEventHandler(async (e) => {
-  const query = getQuery(e);
-  const email = query.email as string;
-  const password = query.password as string;
+  const body = await readBody(e);
+  const email = body.email as string;
+  const password = body.password as string;
 
   const signInResult = await stackServerApp.signInWithCredential({
     email: email,
