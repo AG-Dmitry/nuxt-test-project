@@ -32,7 +32,6 @@ export default defineNuxtConfig({
   optimization: {
     treeShake: {
       composables: {
-        client: { vue: ['onMounted'] },
         server: { vue: ['onServerPrefetch'] },
       },
     },

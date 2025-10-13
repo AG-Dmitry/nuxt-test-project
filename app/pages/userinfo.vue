@@ -26,24 +26,24 @@ const isSubmitting = ref(false)
 
 async function onSubmit(event: FormSubmitEvent<UserSchema>) {
   if (!state.email || !state.password) return;
-  
+
   isSubmitting.value = true;
-  
+
   try {
     await signinUser(state.email, state.password);
-    toast.add({ 
-      title: 'Success', 
-      description: 'You have been signed in successfully.', 
-      color: 'success' 
+    toast.add({
+      title: 'Success',
+      description: 'You have been signed in successfully.',
+      color: 'success'
     });
     state.email = undefined;
     state.password = undefined;
   } catch (error) {
     console.error('Sign in error:', error);
-    toast.add({ 
-      title: 'Error', 
-      description: error instanceof Error ? error.message : 'Sign in failed. Please try again.', 
-      color: 'error' 
+    toast.add({
+      title: 'Error',
+      description: error instanceof Error ? error.message : 'Sign in failed. Please try again.',
+      color: 'error'
     });
   } finally {
     isSubmitting.value = false;
@@ -68,14 +68,8 @@ const isFormValid = computed(() => {
           type="password" />
       </UFormField>
 
-      <UButton 
-        :disabled="!isFormValid || isSubmitting" 
-        :loading="isSubmitting"
-        type="submit" 
-        class="px-12 py-2 mt-2" 
-        variant="outline" 
-        icon="i-lucide-rocket"
-      >
+      <UButton :disabled="!isFormValid || isSubmitting" :loading="isSubmitting" type="submit" class="px-12 py-2 mt-2"
+        variant="outline" icon="i-lucide-rocket">
         {{ isSubmitting ? 'Signing in...' : 'Submit' }}
       </UButton>
     </UForm>
