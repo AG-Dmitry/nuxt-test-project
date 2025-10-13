@@ -10,9 +10,6 @@ useHead({
 const userModel = useUserModel();
 
 const { data: version, error: errorData } = await useFetch('/api/version');
-const { data: user, error: errorUser } = await useFetch('/api/user', {
-  query: { name: '0c0f15dc-31da-49f1-b496-d05e9cccaf5b' },
-});
 
 const dbVersion = computed(() => (version.value
   && typeof version.value === 'object'
@@ -34,8 +31,7 @@ const userEmail = computed(() => userModel.value ? userModel.value : 'No user');
       <!-- User -->
       <div>
         <h1>User</h1>
-        <p v-if="user">{{ userEmail }}</p>
-        <p v-else-if="errorUser">Error fetching user</p>
+        <p>{{ userEmail }}</p>
       </div>
       <!-- Pages -->
       <Alert />
