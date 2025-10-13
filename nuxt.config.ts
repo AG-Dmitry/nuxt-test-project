@@ -44,11 +44,16 @@ export default defineNuxtConfig({
     'nuxt-svgo',
     '@vueuse/nuxt',
     '@nuxt/ui',
-    'botid/nuxt',
+    '@nuxtjs/robots',
+    'nuxt-security'
   ],
   css: ['./../app/assets/css/main.css'],
   svgo: {
     autoImportPath: './../app/assets/icons/',
+  },
+  robots: {
+    blockNonSeoBots: true,
+    sitemap: 'https://nuxt-test-project-plum.vercel.app/sitemap.xml',
   },
   hooks: {
     ready: () => {
