@@ -10,7 +10,7 @@ export const useUtils = () => {
       });
       
       if (signInResult.error) {
-        console.error('Signin error:', signInResult.error);
+        console.error('Sign in error:', signInResult.error);
         throw new Error(signInResult.error);
       }
       
@@ -18,10 +18,10 @@ export const useUtils = () => {
         userModel.loginUser(signInResult.userEmail);
       }
       
-      console.log('Signin successful:', signInResult);
+      console.log('Sign in successful:', signInResult);
       return signInResult;
     } catch (error) {
-      console.error('Signin failed:', error);
+      console.error('Sign in failed:', error);
       throw error;
     }
   };

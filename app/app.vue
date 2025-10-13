@@ -20,6 +20,7 @@ const dbVersion = computed(() => (version.value
   ? (version.value as { version: string }).version : 'No version');
 const userEmail = computed(() => userModel.value ? userModel.value : 'No user');
 
+console.log('User: ', user.value?.user?.primaryEmail);
 </script>
 
 <template>
