@@ -10,9 +10,7 @@ useHead({
 const userModel = useUserModel();
 
 const { data: version, error: errorData } = await useFetch('/api/version');
-const { data: user, error: errorUser } = await useFetch('/api/user', {
-  query: { name: 'f3cf12cd-723c-4d1f-a459-cf0e095cf115' },
-});
+const { data: user, error: errorUser } = await useFetch('/api/user');
 
 const dbVersion = computed(() => (version.value
   && typeof version.value === 'object'
@@ -30,7 +28,7 @@ console.log('Signal: ', user.value?.signal);
       <!-- Database Version -->
       <div>
         <h1>Database Version</h1>
-        <p v-if="version">{{ dbVersion }}</p>
+        <p v-if="version">...{{ dbVersion }}</p>
         <p v-else-if="errorData">Error fetching version</p>
       </div>
       <!-- User -->
