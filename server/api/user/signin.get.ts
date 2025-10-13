@@ -1,4 +1,4 @@
-import { stackServerApp } from '../auth/stack';
+import { stackServerApp } from '../../auth/stack';
 
 export default defineEventHandler(async (e) => {
   const query = getQuery(e);
