@@ -44,6 +44,7 @@ export default defineNuxtConfig({
     'nuxt-svgo',
     '@vueuse/nuxt',
     '@nuxt/ui',
+    'botid/nuxt',
   ],
   css: ['./../app/assets/css/main.css'],
   svgo: {
