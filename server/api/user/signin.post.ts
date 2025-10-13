@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import { stackServerApp } from '../../auth/stack';
 
 export default defineEventHandler(async (e) => {
