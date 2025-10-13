@@ -1,4 +1,4 @@
-// import 'dotenv/config';
+import 'dotenv/config';
 import { stackServerApp } from '../auth/stack';
 
 const email = 'artgreg.tga@gmail.com';
