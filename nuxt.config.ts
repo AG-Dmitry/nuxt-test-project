@@ -61,8 +61,8 @@ export default defineNuxtConfig({
     csrf: false, // managed by Nuxt Csurf
   },
   csurf: {
-    https: false, // default true if in production
-    cookieKey: 'csrf', // "__Host-csrf" if https is true otherwise just "csrf"
+    https: true, // default true if in production
+    cookieKey: '__Host-csrf', // "__Host-csrf" if https is true otherwise just "csrf"
     cookie: {
       path: '/',
       httpOnly: true,
