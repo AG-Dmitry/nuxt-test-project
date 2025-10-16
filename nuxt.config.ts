@@ -45,7 +45,8 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxt/ui',
     '@nuxtjs/robots',
-    'nuxt-security'
+    'nuxt-security',
+    'nuxt-csurf',
   ],
   css: ['./../app/assets/css/main.css'],
   svgo: {
@@ -54,6 +55,21 @@ export default defineNuxtConfig({
   robots: {
     blockNonSeoBots: true,
     sitemap: 'https://nuxt-test-project-plum.vercel.app/sitemap.xml',
+  },
+  // Nuxt Security config
+  security: {
+    csrf: false, // managed by Nuxt Csurf
+  },
+  csurf: {
+    https: false, // default true if in production
+    cookieKey: 'csrf', // "__Host-csrf" if https is true otherwise just "csrf"
+    cookie: {
+      path: '/',
+      httpOnly: true,
+      sameSite: 'strict'
+    },
+    methodsToProtect: ['POST', 'PUT', 'PATCH'],
+    headerName: 'csrf-token' // the header where the csrf token is stored
   },
   hooks: {
     ready: () => {

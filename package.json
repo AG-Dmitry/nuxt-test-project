@@ -23,6 +23,7 @@
     "@vueuse/nuxt": "^13.9.0",
     "eslint": "^9.37.0",
     "nuxt": "^4.1.3",
+    "nuxt-csurf": "^1.6.5",
     "nuxt-security": "^2.4.0",
     "nuxt-svgo": "^4.2.6",
     "pinia": "^3.0.3",
@@ -32,6 +33,8 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
-    "@types/node": "^24.7.2"
+    "@types/node": "^24.7.2",
+    "eslint-plugin-anti-trojan-source": "^1.1.1",
+    "eslint-plugin-security-node": "^1.1.4"
   }
 }

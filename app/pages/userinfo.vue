@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import * as z from 'zod'
 import type { FormSubmitEvent } from '@nuxt/ui'
+import { userSchema } from '#shared/utils/validators';
+import type { UserSchema } from '#shared/types/validators';
+import useValidators from '~/stores/validators';
 
 definePageMeta({
   //layout: 'default',
@@ -8,36 +10,23 @@ definePageMeta({
 })
 
 const { signinUser } = useUtils();
-
-const userSchema = z.object({
-  email: z.email('Invalid email'),
-  password: z.string('Password is required').min(8, 'Must be at least 8 characters')
-})
-
-type UserSchema = z.output<typeof userSchema>
-
-const state = reactive<Partial<UserSchema>>({
-  email: undefined,
-  password: undefined
-})
-
 const toast = useToast()
 const isSubmitting = ref(false)
+const validators = useValidators();
 
-async function onSubmit(event: FormSubmitEvent<UserSchema>) {
-  if (!state.email || !state.password) return;
+async function onSubmit(e: FormSubmitEvent<UserSchema>) {
+  if (!validators.userFormState.email || !validators.userFormState.password) return;
 
   isSubmitting.value = true;
 
   try {
-    await signinUser(state.email, state.password);
+    await signinUser(validators.userFormState.email, validators.userFormState.password);
     toast.add({
       title: 'Success',
       description: 'You have been signed in successfully.',
       color: 'success'
     });
-    state.email = undefined;
-    state.password = undefined;
+    validators.setUserFormState({ email: undefined, password: undefined });
   } catch (error) {
     console.error('Sign in error:', error);
     toast.add({
@@ -51,21 +40,21 @@ async function onSubmit(event: FormSubmitEvent<UserSchema>) {
 }
 
 const isFormValid = computed(() => {
-  return userSchema.safeParse(state).success;
+  return userSchema.safeParse(validators.userFormState).success;
 });
 </script>
 
 <template>
   <div class="flex flex-col items-center">
-    <UForm :schema="userSchema" :state="state" class="space-y-4 mt-4" @submit="onSubmit">
+    <UForm :schema="userSchema" :state="validators.userFormState" class="space-y-4 mt-4" @submit="onSubmit">
       <UFormField label="Email" name="email" class="flex flex-col gap-1">
         <UInput :ui="{ trailing: 'pe-1' }" class="bg-neutral-700 rounded-md" placeholder="enter your email"
-          v-model="state.email" />
+          v-model="validators.userFormState.email" />
       </UFormField>
 
       <UFormField label="Password" name="password" class="flex flex-col gap-1">
-        <UInput class="bg-neutral-700 rounded-md" placeholder="enter your password" v-model="state.password"
-          type="password" />
+        <UInput class="bg-neutral-700 rounded-md" placeholder="enter your password"
+          v-model="validators.userFormState.password" type="password" />
       </UFormField>
 
       <UButton :disabled="!isFormValid || isSubmitting" :loading="isSubmitting" type="submit" class="px-12 py-2 mt-2"

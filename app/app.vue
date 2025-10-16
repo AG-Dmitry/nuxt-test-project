@@ -9,8 +9,8 @@ useHead({
 
 const userModel = useUserModel();
 
-const { data: version, error: errorData } = await useFetch('/api/version');
-const { data: user, error: errorUser } = await useFetch('/api/user');
+const { data: version, error: errorData } = await useCsrfFetch('/api/version');
+const { data: user, error: errorUser } = await useCsrfFetch('/api/user');
 
 const dbVersion = computed(() => (version.value
   && typeof version.value === 'object'

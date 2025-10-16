@@ -8,7 +8,7 @@ export default defineEventHandler(async (e) => {
   if (e.node.req.url?.startsWith('/api/') && detection.isBot && !detection.trusted) {
     throw createError({
       statusCode: 403,
-      statusMessage: 'Bot access denied'
+      statusMessage: 'Access denied'
     })
   }
 })
