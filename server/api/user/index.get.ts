@@ -8,5 +8,5 @@ export default defineEventHandler(async (e) => {
     : await stackServerApp.getUser();
   */
   const session = await establishSession(e);
-  return { user: session.data.activeUser };
+  return { user: await stackServerApp.getUser() };
 });
