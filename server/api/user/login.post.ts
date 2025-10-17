@@ -4,7 +4,7 @@ import { establishSession } from '~~/server/utils/establishSession';
 
 export default defineEventHandler(async (e) => {
   const body = await readValidatedBody(e, (body) => userSchema.parse(body));
-  const session = await establishSession(e);
+  // const session = await establishSession(e);
   const email = body.email;
   const password = body.password;
 
@@ -13,16 +13,15 @@ export default defineEventHandler(async (e) => {
     password: password,
   });
 
-  session.data.activeUser =
-    session.data.activeUser || (await stackServerApp.getUser());
+  const activeUser = await stackServerApp.getUser();
   const error =
     loginResult.status === 'error'
       ? `Sign in failed: ${loginResult.error.humanReadableMessage}`
       : null;
 
   const response = {
-    userEmail: session.data.activeUser
-      ? session.data.activeUser.primaryEmail
+    userEmail: activeUser
+      ? activeUser.primaryEmail
       : null,
     error: error,
   };
