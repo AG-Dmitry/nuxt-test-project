@@ -1,30 +1,30 @@
 import useUserModel from '~/stores/userModel';
 
 export const useUtils = () => {
-  const signinUser = async (email: string, password: string) => {
+  const loginUser = async (email: string, password: string) => {
     const { $csrfFetch } = useNuxtApp();
     try {
       const userModel = useUserModel();
-      const signInResult = await $csrfFetch('/api/user/signin', {
+      const loginResult = await $csrfFetch('/api/user/login', {
         method: 'POST',
         body: { email: email, password: password },
       });
 
-      if (signInResult.error) {
-        console.error('Sign in error:', signInResult.error);
-        throw new Error(signInResult.error);
+      if (loginResult.error) {
+        console.error('Sign in error:', loginResult.error);
+        throw new Error(loginResult.error);
       }
 
-      if (signInResult.userEmail) {
-        userModel.loginUser(signInResult.userEmail);
+      if (loginResult.userEmail) {
+        userModel.loginUser(loginResult.userEmail);
       }
 
-      console.log('Sign in successful:', signInResult);
-      return signInResult;
+      console.log('Sign in successful:', loginResult);
+      return loginResult;
     } catch (error) {
       console.error('Sign in failed:', error);
       throw error;
     }
   };
-  return { signinUser };
+  return { loginUser };
 };

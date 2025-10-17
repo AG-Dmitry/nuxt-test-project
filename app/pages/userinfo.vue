@@ -9,7 +9,7 @@ definePageMeta({
   middleware: 'auth',
 })
 
-const { signinUser } = useUtils();
+const { loginUser } = useUtils();
 const toast = useToast()
 const isSubmitting = ref(false)
 const validators = useValidators();
@@ -20,7 +20,7 @@ async function onSubmit(e: FormSubmitEvent<UserSchema>) {
   isSubmitting.value = true;
 
   try {
-    await signinUser(validators.userFormState.email, validators.userFormState.password);
+    await loginUser(validators.userFormState.email, validators.userFormState.password);
     toast.add({
       title: 'Success',
       description: 'You have been signed in successfully.',
