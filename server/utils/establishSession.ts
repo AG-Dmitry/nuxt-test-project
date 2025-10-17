@@ -5,9 +5,9 @@ export const establishSession = async (e: H3Event<EventHandlerRequest>) => {
     name: 'my-session',
     password: process.env.SESSION_PASSWORD!,
     cookie: {
-      httpOnly: true,
+      httpOnly: false,
       secure: true,
-      sameSite: 'strict',
+      sameSite: false,
     },
     maxAge: 60 * 60 * 24 * 7, // 7 days
   });
