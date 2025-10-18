@@ -9,10 +9,14 @@ definePageMeta({
 const counterModel = useCounterModel();
 const { getTestData } = useUtils();
 
+//// Test Neon DB data fetch ////
+let testData = ref<string>('Test');
+
 const displayTestData = async () => {
-  const testData = await getTestData();
-  console.log(testData.data[0].content);
+  const useTestData = await getTestData();
+  testData.value = (useTestData.data[0].content);
 };
+//// Test Neon DB data fetch ////
 </script>
 
 <template>
@@ -23,6 +27,6 @@ const displayTestData = async () => {
     <button @click="counterModel.substractCounterValue"
       class="bg-neutral-700 hover:bg-neutral-600 active:bg-neutral-500 px-12 min-w-40 py-2 rounded text-3xl cursor-pointer">—</button>
     <button @click="displayTestData"
-      class="bg-neutral-700 hover:bg-neutral-600 active:bg-neutral-500 px-12 min-w-40 py-2 rounded text-3xl cursor-pointer">Test</button>
+      class="bg-neutral-700 hover:bg-neutral-600 active:bg-neutral-500 px-12 min-w-40 py-2 rounded text-3xl cursor-pointer">{{ testData }}</button>
   </div>
 </template>
