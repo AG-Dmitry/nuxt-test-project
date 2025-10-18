@@ -1,6 +1,6 @@
 import 'dotenv/config';
-import { stackServerApp } from '../../auth/stack';
 import { establishSession } from '~~/server/utils/establishSession';
+import { stackServerApp } from '../../auth/stack';
 
 export default defineEventHandler(async (e) => {
   const body = await readValidatedBody(e, (body) => userSchema.parse(body));

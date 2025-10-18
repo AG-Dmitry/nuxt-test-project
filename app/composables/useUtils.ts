@@ -26,5 +26,12 @@ export const useUtils = () => {
       throw error;
     }
   };
-  return { loginUser };
+
+  const getTestData = async () => {
+    const { $csrfFetch } = useNuxtApp();
+    const testData = await $csrfFetch('/api/sqlTest');
+    return testData;
+  };
+
+  return { loginUser, getTestData };
 };
